@@ -8,13 +8,15 @@ import { MyApp } from './app.component';
 import { HomePage } from '../pages/home/home';
 import { NewPage } from '../pages/new/new';
 import { LugaresServicos } from '../services/lugares.services';
+import { SampleModalPage } from '../pages/sample-modal/sample-modal';
 
 
 @NgModule({
   declarations: [
     MyApp,
     HomePage,
-    NewPage
+    NewPage,
+    SampleModalPage
   ],
   imports: [
     BrowserModule,
@@ -25,7 +27,8 @@ import { LugaresServicos } from '../services/lugares.services';
   entryComponents: [
     MyApp,
     HomePage,
-    NewPage
+    NewPage,
+    SampleModalPage
   ],
   providers: [
     StatusBar,

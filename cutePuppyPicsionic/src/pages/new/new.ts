@@ -15,14 +15,37 @@ import { LugaresServicos } from '../../services/lugares.services';
 })
 export class NewPage {
 
-  constructor(private places: LugaresServicos, private nav: NavController) {
+  private item: {};
+  private valor: {titulo: string, senha: string};
+  
+  // Variavel que verifica se o botão de add foi clicado, caso não, add o valor antigo de novo na lista.
+  private verifica = false;
+
+
+  constructor(private places: LugaresServicos, private nav: NavController, private navParams: NavParams) {
+      
+      this.item = {};
+
+      if(this.navParams.get('item') != undefined){
+        this.item = this.navParams.get('item');
+        this.valor = this.navParams.get('item');
+      }
+      console.log(this.navParams.get('item'));
   }
 
-  onAddPlace(value: {titulo: string}){
-
+  onAddPlace(value: {titulo: string, senha: string}){
     this.places.addLugar(value);
+    this.verifica = true;
     this.nav.pop();
+  }
 
+  ionViewWillLeave(){
+    console.log("Saindo do add: " + this.valor);
+    console.log(this.item);
+    if(this.verifica == false && this.valor != undefined){
+        this.places.addLugar(this.valor);
+        console.log('Add cancelado, add object antigo');
+    }
   }
 
 }
